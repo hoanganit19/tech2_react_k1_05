@@ -22,11 +22,14 @@ function App() {
   const PrivateOrder = () => {
       const isAuth = false
 
+      console.log('ok');
       if (!isAuth){
         return <Navigate to='/login' />
       }else{
         return <Order />
       }
+
+
   }
 
   return (
