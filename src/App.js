@@ -50,7 +50,7 @@ function App() {
 
                     <Route path='/products' element={<Products />} />
 
-                    <Route path='/san-pham/:slug.html' element={<ProductDetail />} />
+                    <Route path='/san-pham/:slug-:id.html' element={<ProductDetail />} />
 
                     <Route path='/news' element={<News />} />
 
