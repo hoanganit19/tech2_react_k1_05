@@ -31,8 +31,8 @@ export default function ProductDetail(){
                 <button type="submit">Tìm</button>
             </form>
             <h1>
-                Product Detail: {params.slug} <br/>
-                Product Detail: {params.id} <br/>
+                Product Slug: {params.slug} <br/>
+                Product Id: {params.id} <br/>
                 Keywords: {searchParams.get('keywords')} <br/>
 
                 CateId: {searchParams.get('cateId')}

@@ -41,6 +41,18 @@ export class Sidebar extends Component {
             Contact
           </NavLink>
         </li>
+
+        <li>
+          <NavLink to="/order" className='nav-link'>
+            Order
+          </NavLink>
+        </li>
+
+        <li>
+          <NavLink to="/report" className='nav-link'>
+            Report
+          </NavLink>
+        </li>
       </ul>
     );
   }

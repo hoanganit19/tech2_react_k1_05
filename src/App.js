@@ -1,8 +1,9 @@
+import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Sidebar from './components/Sidebar';
-import {Routes, Route, Navigate} from 'react-router-dom';
+import {Routes, Route, Navigate, Outlet} from 'react-router-dom';
 import Home from './pages/Home';
 import About from './pages/About';
 import Products from './pages/Products';
@@ -16,21 +17,27 @@ import Dashboard from './pages/admin/Dashboard';
 import AdminProducts from './pages/admin/AdminProducts';
 import ProductAdd from './pages/admin/ProductAdd';
 import ProductDetail from './pages/admin/ProductDetail';
+import BestSeller from './pages/BestSeller';
 
 function App() {
 
   const PrivateOrder = () => {
       const isAuth = false
 
-      console.log('ok');
+  
       if (!isAuth){
         return <Navigate to='/login' />
       }else{
-        return <Order />
+        return <Outlet />
       }
 
-
   }
+
+  const AboutLazy = React.lazy(() => {
+    return import('./pages/About');
+  });
+
+  console.log(AboutLazy);
 
   return (
     <>
@@ -46,11 +53,15 @@ function App() {
 
                     <Route path='/' element={<Home />} />
 
-                    <Route path='/about' element={<About />} />
+                    <Route path='/about' element={
+                      <React.Suspense fallback={<div>Đang tải...</div>}>
+                          <About />
+                      </React.Suspense>
+                    } />
 
                     <Route path='/products' element={<Products />} />
 
-                    <Route path='/san-pham/:slug-:id.html' element={<ProductDetail />} />
+                    <Route path='/san-pham/:id-:slug.html' element={<ProductDetail />} />
 
                     <Route path='/news' element={<News />} />
 
@@ -67,8 +78,9 @@ function App() {
                     <Route path='/admin'>
                         <Route path='' element={<Dashboard />}/>
                         <Route path='products'>
+                            
                             <Route path='' element={<AdminProducts />}/>
-
+                            {/* <Route index element={<BestSeller />} /> */}
                             <Route path='add' element={<ProductAdd />}/>
                         </Route>
                     </Route>
